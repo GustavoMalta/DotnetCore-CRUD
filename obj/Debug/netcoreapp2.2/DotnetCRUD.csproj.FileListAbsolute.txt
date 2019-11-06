@@ -28,8 +28,8 @@ C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.
 C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\DotnetCRUD.dll
 C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\DotnetCRUD.pdb
 C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\DotnetCRUD.csproj.CopyComplete
-C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\Create.g.cshtml.cs
 C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\Delete.g.cshtml.cs
 C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\Details.g.cshtml.cs
-C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\Edit.g.cshtml.cs
 C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\Index.g.cshtml.cs
+C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\AddorEdit.g.cshtml.cs
+C:\Users\User\Desktop\Cursos\Dotnet\DotnetCRUD\DotnetCRUD\obj\Debug\netcoreapp2.2\Razor\Views\Employee\Edit.g.cshtml.cs

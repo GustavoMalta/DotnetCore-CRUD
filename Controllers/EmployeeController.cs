@@ -1,8 +1,11 @@
-﻿using DotnetCRUD.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using DotnetCRUD.Models;
 
 namespace DotnetCRUD.Controllers
 {
@@ -18,7 +21,10 @@ namespace DotnetCRUD.Controllers
         // GET: Employee
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+
+            var employee = _context.Employees.OrderBy(e => e.EmployeeId).ThenBy(e => e.EmployeeId).ToList();
+            var anterior = await _context.Employees.ToListAsync();
+            return View(employee);
         }
 
         // GET: Employee/Details/5
@@ -38,7 +44,7 @@ namespace DotnetCRUD.Controllers
 
             return View(employee);
         }
-            
+
         // GET: Employee/Create
         public IActionResult Create()
         {
@@ -50,7 +56,7 @@ namespace DotnetCRUD.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,FullName,EmpCode,position,OfficeLocation")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,FullName,Phone,EmpCode,position,OfficeLocation,Active")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +68,11 @@ namespace DotnetCRUD.Controllers
         }
 
         // GET: Employee/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> AddorEdit(int? id=0)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return View(new Employee());
             }
 
             var employee = await _context.Employees.FindAsync(id);
@@ -82,18 +88,22 @@ namespace DotnetCRUD.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,FullName,EmpCode,position,OfficeLocation")] Employee employee)
+        public async Task<IActionResult> AddorEdit([Bind("EmployeeId,FullName,Phone,EmpCode,position,OfficeLocation,Active")] Employee employee)
         {
-            if (id != employee.EmployeeId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+           if (ModelState.IsValid)
+           {
+                if (employee.EmployeeId==0)
+                {
+                    employee.Active = true;
+                    _context.Add(employee);
+                }
+                else
                 {
                     _context.Update(employee);
+                }
+
+                try
+                {
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -136,7 +146,8 @@ namespace DotnetCRUD.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var employee = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(employee);
+            employee.Active = false;
+            _context.Employees.Update(employee);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
